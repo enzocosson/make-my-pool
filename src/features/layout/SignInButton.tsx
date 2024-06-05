@@ -1,3 +1,5 @@
+/* eslint-disable tailwindcss/enforces-shorthand */
+/* eslint-disable tailwindcss/classnames-order */
 "use client";
 import React from "react";
 import { useSession, signOut, signIn } from "next-auth/react";
