@@ -1,0 +1,32 @@
+.main {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+
+  .link {
+    color: white;
+    font-size: 0.8rem;
+  }
+
+  .try__free {
+    cursor: pointer;
+
+    width: 200px;
+    height: 48px;
+    background: #ffffff42;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.9rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background: #ffffffa1;
+    }
+  }
+}

@@ -1,0 +1,139 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      #00ddfab5 0%,
+      #257faf 33%,
+      #134a77 66%,
+      #000e1af1 100%
+    );
+    z-index: -1;
+  }
+
+  .light {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: radial-gradient(rgb(255 255 255) 0%, rgb(34 144 188 / 0%) 59%);
+    object-fit: cover;
+  }
+
+  .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    object-fit: cover;
+  }
+
+  .container__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+  }
+
+  .title {
+    font-size: 5vw;
+    color: white;
+    font-weight: bold;
+
+    text-align: center;
+
+    background: linear-gradient(to top, #d6f5ff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    line-height: 6vw;
+  }
+
+  .small {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: regular;
+    text-align: center;
+
+    background: linear-gradient(to top, #d6f5ff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    line-height: 1.8rem;
+  }
+
+  .try__free {
+    position: relative;
+    cursor: pointer;
+    width: 290px;
+    height: 64px;
+    // background-color: white;
+    border-radius: 5px;
+    font-size: 0.9rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+
+    font-weight: bold;
+
+    color: white;
+    font-size: 1rem;
+
+    box-shadow: 0px 0px 10px 0px #4899c132, 1px 1.5px 2.2px 0px #ffffff22 inset,
+      0px -1px 5.4px 0px #00000020 inset;
+
+    &::after {
+      content: "Accèder au configurateur";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #58a4e5, #47bec6);
+      border-radius: 5px;
+      z-index: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .app {
+    bottom: -25%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 800px;
+  }
+
+  .app__window {
+    bottom: -18%;
+    left: 75%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 200px;
+  }
+}

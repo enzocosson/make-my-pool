@@ -1,0 +1,200 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+
+  .left__side {
+    position: relative;
+    width: 49%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    padding: 1rem;
+    overflow: hidden;
+
+    .bg {
+      width: 100%;
+      height: 100%;
+      border-radius: 30px 0px 0px 30px;
+      overflow: hidden;
+
+      overflow: hidden;
+      position: relative;
+
+      h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+
+        span {
+          font-weight: 200;
+        }
+      }
+
+      .bg__app {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      .gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+
+        background: linear-gradient(to right, #58a4e5, #47bec6);
+      }
+    }
+  }
+
+  /* Login.module.scss */
+
+  .right__side {
+    width: 61%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+
+    .loginForm {
+      width: 100%;
+      max-width: 572px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      h2 {
+        font-size: 1.5rem;
+        color: var(--black);
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        margin-bottom: 5px;
+        display: block;
+        font-weight: bold;
+        color: var(--gray);
+      }
+
+      input {
+        width: 100%;
+        height: 60px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: transparent;
+        padding-left: 1rem;
+      }
+
+      .container__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .checkboxContainer {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        label {
+          margin-bottom: 0;
+        }
+
+        input[type="checkbox"] {
+          width: 16px;
+          height: 16px;
+          margin-bottom: 0;
+        }
+      }
+
+      .forgotPassword {
+        display: block;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .submitButton {
+        width: 100%;
+        height: 60px;
+        padding: 10px;
+        background-color: var(--blue);
+        color: var(--white);
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      .ou {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+
+        hr {
+          width: 40% !important;
+          height: 2px;
+        }
+        span {
+          font-weight: 500;
+          color: var(--gray);
+        }
+      }
+
+      .googleButton {
+        width: 100%;
+        height: 60px;
+        padding: 10px;
+        background-color: var(--white);
+        color: var(--black);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-weight: bold;
+        box-shadow: 0px 0px 5px 0px #00000020;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+          width: 29px;
+        }
+      }
+    }
+  }
+}
