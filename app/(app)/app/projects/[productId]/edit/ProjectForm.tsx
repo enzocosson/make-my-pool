@@ -44,7 +44,7 @@ export const ProjectForm = (props: ProjectFormProps) => {
 
       toast.success("Projet créé avec succès!");
 
-      router.push(`/projects/${data.id}`);
+      router.push(`/app/projects/${data.id}`);
     },
   });
 
@@ -76,6 +76,33 @@ export const ProjectForm = (props: ProjectFormProps) => {
                 </FormControl>
                 <FormDescription>
                   Le nom du projet doit être unique.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="slug"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Url</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Nom du projet"
+                    onChange={(e) => {
+                      const value = e.target.value
+                        .replace(/[^a-zA-Z0-9-]/g, "-")
+                        .toLowerCase();
+                      field.onChange(value);
+                    }}
+                  />
+                </FormControl>
+                <FormDescription>
+                  L&apos;URL du projet doit être unique et ne doit contenir que
+                  des lettres, des chiffres et des tirets.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

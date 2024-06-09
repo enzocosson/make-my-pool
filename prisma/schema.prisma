@@ -61,6 +61,7 @@ model Project {
   id        String   @id @default(cuid())
   title     String
   image     String?
+  slug      String   @unique
   user      User     @relation(fields: [userId], references: [id]) // Utilisateur associé au projet
   userId    String   @map("user_id") // ID de l'utilisateur associé
   createdAt DateTime @default(now())

@@ -1,11 +1,21 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-import { userAction } from "@/safe-actions";
+import { ActionError, userAction } from "@/safe-actions";
 import { ProjectSchema } from "./project.schema";
 
 export const createProjectAction = userAction(
   ProjectSchema,
   async (input, context) => {
+    const slugExists = await prisma.project.count({
+      where: {
+        slug: input.slug,
+      },
+    });
+
+    if (slugExists > 0) {
+      throw new ActionError("Slug already exists");
+    }
+
     const project = await prisma.project.create({
       data: {
         ...input,
@@ -17,4 +27,6 @@ export const createProjectAction = userAction(
   }
 );
 
-export const editProjectAction = async () => {};
+export const editProjectAction = async () => {
+  // Implement your edit project logic here
+};

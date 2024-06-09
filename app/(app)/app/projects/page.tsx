@@ -1,3 +1,5 @@
+/* eslint-disable tailwindcss/classnames-order */
+/* eslint-disable @next/next/no-img-element */
 import { PrismaClient } from "@prisma/client";
 import style from "./page.module.scss";
 import Header from "../Header/Header";
@@ -35,39 +37,43 @@ export default async function AppPage() {
     <>
       <Header />
       <div className={style.main}>
-        {projects.length === 0 ? (
-          <p className={style.empty}>Aucun projet pour le moment</p>
-        ) : (
-          <>
-            {projects.map((project) => (
-              <Link
-                href={`/app/dashboard/projects/${project.id}`}
-                className={style.card}
-                key={project.id}
-              >
-                <div className={style.img}>
-                  <img src={project.image} alt={`Image de ${project.title}`} />
-                </div>{" "}
-                <div className={style.info}>
-                  {project.title}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger>
-                      {" "}
-                      <Ellipsis />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuLabel>Settings</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <DeleteProject projectId={project.id} />
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </Link>
-            ))}
-          </>
-        )}
+        <div className="w-full flex flex-wrap justify-start gap-5">
+          {projects.length === 0 ? (
+            <p className={style.empty}>Aucun projet pour le moment</p>
+          ) : (
+            <>
+              {projects.map((project) => (
+                <Link
+                  href={`/app/projects/${project.id}`}
+                  className={style.card}
+                  key={project.id}
+                >
+                  <div className={style.img}>
+                    <img
+                      src={project.image || "/image/photo-empty.png"}
+                      alt={`Image de ${project.title}`}
+                    />
+                  </div>{" "}
+                  <div className={style.info}>
+                    {project.title}
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <Ellipsis />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuLabel>Settings</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>
+                          <DeleteProject projectId={project.id} />
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                </Link>
+              ))}
+            </>
+          )}
+        </div>
         <img className={style.points__bg} src="/image/points-bg.svg" alt="" />
       </div>
     </>

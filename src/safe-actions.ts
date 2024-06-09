@@ -2,7 +2,7 @@ import { create } from "domain";
 import { createSafeActionClient } from "next-safe-action";
 import { currentUser } from "./auth/current-user";
 
-class ActionError extends Error {
+export class ActionError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "ActionError";
