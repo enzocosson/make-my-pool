@@ -1,4 +1,6 @@
+import { create } from "domain";
 import { createSafeActionClient } from "next-safe-action";
+import { currentUser } from "./auth/current-user";
 
 class ActionError extends Error {
   constructor(message: string) {
@@ -7,7 +9,7 @@ class ActionError extends Error {
   }
 }
 
-const handleReturnedServerError = (error: any) => {
+const handleReturnedServerError = (error: Error) => {
   if (error instanceof ActionError) {
     return error.message;
   }
@@ -16,4 +18,20 @@ const handleReturnedServerError = (error: any) => {
 
 export const action = createSafeActionClient({
   handleReturnedServerError: handleReturnedServerError,
+});
+
+export const userAction = createSafeActionClient({
+  handleReturnedServerError: handleReturnedServerError,
+
+  middleware: async () => {
+    const user = await currentUser();
+
+    if (!user) {
+      throw new ActionError(
+        "Vous devez être connecté pour effectuer cette action."
+      );
+    }
+
+    return { user };
+  },
 });

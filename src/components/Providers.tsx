@@ -3,6 +3,15 @@ import { SessionProvider } from "next-auth/react";
 import React, { PropsWithChildren, ReactNode } from "react";
 import { ThemeProvider } from "../features/theme/ThemeProvider";
 import { Toaster } from "./ui/sonner";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
+
+const queryClient = new QueryClient();
 
 interface Props {
   children: ReactNode;
@@ -19,8 +28,10 @@ export const Providers = (props: PropsWithChildren) => {
         enableSystem
         disableTransitionOnChange
       >
-        <Toaster />
-        {props.children}
+        <QueryClientProvider client={queryClient}>
+          <Toaster />
+          {props.children}
+        </QueryClientProvider>
       </ThemeProvider>
     </SessionProvider>
   );

@@ -35,14 +35,14 @@ const Header = () => {
       </LoggedInDropdown>
 
       <h1 className={style.header__title}>
-        <div>
+        <Link href="/app">
           MakeMy<span>Pool</span>
-        </div>
+        </Link>
         <p>/</p>
         <p>Dashboard</p>
       </h1>
 
-      <Link href="/app/dashboard/projects/new" className={style.new}>
+      <Link href="/app/projects/new" className={style.new}>
         <Plus size={16} />
         Nouveau projet
       </Link>

@@ -17,7 +17,7 @@ export default async function Couverture() {
           <br /> impressionner vos clients.
         </small>
         <Link
-          href="http://localhost:3000/app"
+          href="http://localhost:3000/app/projects"
           className={style.try__free}
         ></Link>
       </div>

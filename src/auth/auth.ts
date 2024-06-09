@@ -3,7 +3,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import GoogleProvider from "next-auth/providers/google";
 
-export const { auth, handlers } = NextAuth({
+export const { auth: baseAuth, handlers } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({

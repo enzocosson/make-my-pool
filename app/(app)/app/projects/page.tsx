@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import style from "./page.module.scss";
-import Header from "./Header/Header";
+import Header from "../Header/Header";
 import { Ellipsis } from "lucide-react";
 import { redirect } from "next/navigation";
 import {
