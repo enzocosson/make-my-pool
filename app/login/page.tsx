@@ -1,11 +1,23 @@
 // Login.tsx
+"use client";
 
 import { useState } from "react";
 import Header from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
 import styles from "./Login.module.scss";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleGoogleSignIn = () => {
+    signIn("google", { callbackUrl: "http://localhost:3000/app" });
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.left__side}>
@@ -14,7 +26,6 @@ export default function Login() {
             MakeMy<span>Pool</span>
           </h1>
           <span className={styles.gradient}></span>
-          {/* <img className={styles.bg__app} src="/image/bg-app.png" alt="" /> */}
         </div>
       </div>
 
@@ -52,7 +63,11 @@ export default function Login() {
             <span>Ou</span>
             <hr />
           </div>
-          <button className={styles.googleButton}>
+          <button
+            type="button"
+            onClick={handleGoogleSignIn}
+            className={styles.googleButton}
+          >
             <img
               className={styles.bg__app}
               src="/image/google-icon.png"

@@ -1,0 +1,43 @@
+.sing__in {
+  cursor: pointer;
+
+  width: 200px;
+  height: 48px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 0.9rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease-in-out;
+
+  font-weight: bold;
+
+  color: #47bec6;
+  // background: linear-gradient(to right, #58a4e5, #47bec6);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+}
+
+.sing__out {
+  cursor: pointer;
+
+  width: 200px;
+  height: 48px;
+  background-color: #2876ba;
+  border-radius: 5px;
+  font-size: 0.9rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease-in-out;
+
+  font-weight: bold;
+
+  color: white;
+  // background: linear-gradient(to right, #58a4e5, #47bec6);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+}

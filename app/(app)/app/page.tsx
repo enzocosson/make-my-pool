@@ -1,32 +1,68 @@
-/* eslint-disable tailwindcss/enforces-shorthand */
-/* eslint-disable tailwindcss/classnames-order */
-"use client";
-import { useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { PrismaClient } from "@prisma/client";
+import style from "./page.module.scss";
+import Header from "./Header/Header";
+import { auth } from "@/auth/auth";
+import { Ellipsis } from "lucide-react";
 import { redirect } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import DeleteProject from "@/components/DeleteProject/DeleteProject";
+import Link from "next/link";
 
-const AppPage = () => {
-  const { data: session, status } = useSession();
+const prisma = new PrismaClient();
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      redirect(`/login`);
-    }
-  }, [status]);
+export default async function AppPage() {
+  const session = await auth();
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
+  if (!session?.user) {
+    redirect("/login");
   }
 
-  if (status === "authenticated") {
-    return (
-      <div>
-        <h1>Bienvenue dans l'application de modélisation 3D</h1>
+  const projects = await prisma.project.findMany({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  return (
+    <>
+      <Header />
+      <div className={style.main}>
+        {projects.map((project) => (
+          <Link
+            href={`/app/dashboard/projects/${project.id}`}
+            className={style.card}
+            key={project.id}
+          >
+            <div className={style.img}>
+              <img src={project.image} alt={`Image de ${project.title}`} />
+            </div>{" "}
+            <div className={style.info}>
+              {project.title}
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  {" "}
+                  <Ellipsis />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>Settings</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <DeleteProject projectId={project.id} />
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </Link>
+        ))}
+        <img className={style.points__bg} src="/image/points-bg.svg" alt="" />
       </div>
-    );
-  }
-
-  return null;
-};
-
-export default AppPage;
+    </>
+  );
+}

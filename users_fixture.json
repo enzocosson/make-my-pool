@@ -1,0 +1,37 @@
+[
+  {
+    "id": "cktpbg7d10000v4y6zqg8ekdx",
+    "name": "Jean Dupont",
+    "email": "jean.dupont@example.com",
+    "emailVerified": "2024-06-01T12:00:00Z",
+    "image": "https://picsum.photos/200",
+    "subscription": "FREE",
+    "projects": [
+      {
+        "id": "cktpbg7d30002v4y6zqg8ekdx",
+        "title": "Projet 1",
+        "image": "https://picsum.photos/200"
+      }
+    ]
+  },
+  {
+    "id": "cktpbg7d20001v4y6zqg8ekdx",
+    "name": "Marie Martin",
+    "email": "marie.martin@example.com",
+    "emailVerified": "2024-06-02T12:00:00Z",
+    "image": "https://picsum.photos/200",
+    "subscription": "PRO",
+    "projects": [
+      {
+        "id": "cktpbg7d40003v4y6zqg8ekdx",
+        "title": "Projet 1",
+        "image": "https://picsum.photos/200"
+      },
+      {
+        "id": "cktpbg7d40004v4y6zqg8ekdx",
+        "title": "Projet 2",
+        "image": "https://picsum.photos/200"
+      }
+    ]
+  }
+]

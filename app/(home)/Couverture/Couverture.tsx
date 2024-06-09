@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout";
 import style from "./Couverture.module.scss";
+import Link from "next/link";
 
 export default async function Couverture() {
   return (
@@ -15,7 +16,10 @@ export default async function Couverture() {
           réaliste et
           <br /> impressionner vos clients.
         </small>
-        <button className={style.try__free}></button>
+        <Link
+          href="http://localhost:3000/app"
+          className={style.try__free}
+        ></Link>
       </div>
 
       <img className={style.app} src="/image/app.png" alt="" />

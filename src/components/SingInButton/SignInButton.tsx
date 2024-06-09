@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { LogOut, LogIn } from "lucide-react";
 import style from "./SignInButton.module.scss";
+import Link from "next/link";
 
 const SignInButton = () => {
   const { data: session } = useSession();
@@ -21,12 +22,16 @@ const SignInButton = () => {
       </div>
     );
   }
+
   return (
     <div className="flex items-center gap-10">
-      <button onClick={() => signIn()} className={style.sing__in}>
+      <Link
+        href="http://localhost:3000/login?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F"
+        className={style.sing__in}
+      >
         <LogIn size={18} className="mr-2" />
         Se connecter
-      </button>
+      </Link>
     </div>
   );
 };
