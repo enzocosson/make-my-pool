@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Header from "../../Header/Header";
-import { ProjectForm } from "../[productId]/edit/ProjectForm";
+import { ProjectForm } from "../[slug]/edit/ProjectForm";
 import style from "./page.module.scss";
 
 export default async function AppPage() {

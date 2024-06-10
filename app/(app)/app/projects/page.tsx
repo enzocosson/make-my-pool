@@ -17,6 +17,7 @@ import DeleteProject from "@/components/DeleteProject/DeleteProject";
 import Link from "next/link";
 import Image from "next/image";
 import { requireCurrentUser } from "@/auth/current-user";
+import { Plus } from "lucide-react";
 
 const prisma = new PrismaClient();
 
@@ -37,43 +38,48 @@ export default async function AppPage() {
     <>
       <Header />
       <div className={style.main}>
-        <div className="w-full flex flex-wrap justify-start gap-5">
-          {projects.length === 0 ? (
-            <p className={style.empty}>Aucun projet pour le moment</p>
-          ) : (
-            <>
-              {projects.map((project) => (
-                <Link
-                  href={`/app/projects/${project.id}`}
-                  className={style.card}
-                  key={project.id}
-                >
-                  <div className={style.img}>
-                    <img
-                      src={project.image || "/image/photo-empty.png"}
-                      alt={`Image de ${project.title}`}
-                    />
-                  </div>{" "}
-                  <div className={style.info}>
-                    {project.title}
-                    <DropdownMenu>
-                      <DropdownMenuTrigger>
-                        <Ellipsis />
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent>
-                        <DropdownMenuLabel>Settings</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                          <DeleteProject projectId={project.id} />
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                </Link>
-              ))}
-            </>
-          )}
-        </div>
+        {projects.length === 0 ? (
+          <div className={style.container__empty}>
+            <p className={style.empty}>Aucun projet pour le moment.</p>
+            <Link href="/app/projects/new" className={style.new}>
+              <Plus size={16} />
+              Nouveau projet
+            </Link>
+          </div>
+        ) : (
+          <div className="w-full flex flex-wrap justify-start gap-5">
+            {projects.map((project) => (
+              <Link
+                href={`/app/projects/${project.slug}`}
+                className={style.card}
+                key={project.id}
+              >
+                <div className={style.img}>
+                  <img
+                    src={project.image || "/image/photo-empty.png"}
+                    alt={`Image de ${project.title}`}
+                  />
+                </div>{" "}
+                <div className={style.info}>
+                  {project.title}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Ellipsis />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>Settings</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>
+                        <DeleteProject projectId={project.id} />
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
         <img className={style.points__bg} src="/image/points-bg.svg" alt="" />
       </div>
     </>

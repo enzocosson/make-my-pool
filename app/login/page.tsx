@@ -15,7 +15,7 @@ export default function Login() {
   });
 
   const handleGoogleSignIn = () => {
-    signIn("google", { callbackUrl: "http://localhost:3000/app" });
+    signIn("google", { callbackUrl: "http://localhost:3000/app/projects" });
   };
 
   return (

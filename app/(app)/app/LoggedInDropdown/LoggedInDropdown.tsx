@@ -15,7 +15,7 @@ const LoggedInDropdown = (props: LoggedInDropdownProps) => {
 
   if (session && session.user) {
     return (
-      <div className="mt-2 z-10">
+      <div className="">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>{props.children}</DropdownMenuTrigger>
           <DropdownMenuContent>

@@ -16,11 +16,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "react-query";
 import { toast } from "sonner";
-import { createProjectAction } from "./project.actions";
+import { createProjectAction, updateProjectAction } from "./project.actions";
 import { useRouter } from "next/navigation";
 
 export type ProjectFormProps = {
   defaultValues?: ProjectType;
+  projectId?: string;
 };
 
 export const ProjectForm = (props: ProjectFormProps) => {
@@ -35,7 +36,12 @@ export const ProjectForm = (props: ProjectFormProps) => {
 
   const mutation = useMutation({
     mutationFn: async (values: ProjectType) => {
-      const { data, serverError } = await createProjectAction(values);
+      const { data, serverError } = isCreate
+        ? await createProjectAction(values)
+        : await updateProjectAction({
+            id: props.projectId || "-",
+            data: values,
+          });
 
       if (serverError || !data) {
         toast.error(serverError);
@@ -44,7 +50,7 @@ export const ProjectForm = (props: ProjectFormProps) => {
 
       toast.success("Projet créé avec succès!");
 
-      router.push(`/app/projects/${data.id}`);
+      router.push(`/app/projects/${data.slug}`);
     },
   });
 
