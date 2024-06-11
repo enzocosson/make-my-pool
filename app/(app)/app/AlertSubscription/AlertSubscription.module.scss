@@ -1,0 +1,25 @@
+/* eslint-disable tailwindcss/classnames-order */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.content {
+  text-align: center;
+}
+
+.button {
+  background-color: #3490dc;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}

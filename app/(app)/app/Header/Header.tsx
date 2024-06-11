@@ -1,6 +1,5 @@
 /* eslint-disable tailwindcss/classnames-order */
 "use client";
-
 import React from "react";
 import { useSession, signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -9,11 +8,21 @@ import style from "./Header.module.scss";
 import LoggedInDropdown from "../LoggedInDropdown/LoggedInDropdown";
 import { ChevronDown, Plus, Home } from "lucide-react";
 import Link from "next/link";
+import { NewProjectButton } from "../NewProjectButton/NewProjectButton";
+import { User } from "../../../../types";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-const Header = () => {
-  const { data: session } = useSession();
+const Header = ({ user }: { user: User }) => {
+  const router = useRouter();
 
-  if (!session || !session.user) {
+  const currentPath = window.location.pathname;
+  console.log(currentPath);
+
+  const isNewPage = currentPath === "/app/projects/new";
+
+  if (!user) {
+    router.push("/login");
     return null;
   }
 
@@ -23,10 +32,7 @@ const Header = () => {
         <Link href="/app/projects" className={style.home}>
           <Home size={16} />
         </Link>
-        <Link href="/app/projects/new" className={style.new}>
-          <Plus size={16} />
-          Nouveau projet
-        </Link>
+        {!isNewPage ? <NewProjectButton user={user} /> : null}
       </div>
 
       <h1 className={style.header__title}>
@@ -42,12 +48,12 @@ const Header = () => {
           <div className={style.user}>
             <div className={style.name}>
               <ChevronDown size={16} className={style.arrow} />
-              {session.user.name}
+              {user.name}
             </div>
             <Avatar>
-              <AvatarFallback>{session.user.name?.[0]}</AvatarFallback>
-              {session.user.image ? (
-                <AvatarImage src={session.user.image} alt="Avatar" />
+              <AvatarFallback>{user.name?.[0]}</AvatarFallback>
+              {user.image ? (
+                <AvatarImage src={user.image} alt="Avatar" />
               ) : null}
             </Avatar>
           </div>

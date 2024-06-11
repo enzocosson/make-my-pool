@@ -1,6 +1,5 @@
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable @next/next/no-img-element */
-import { PrismaClient } from "@prisma/client";
 import style from "./page.module.scss";
 import Header from "../Header/Header";
 import { Ellipsis } from "lucide-react";
@@ -16,13 +15,14 @@ import {
 import DeleteProject from "@/components/DeleteProject/DeleteProject";
 import Link from "next/link";
 import Image from "next/image";
-import { requireCurrentUser } from "@/auth/current-user";
+import { currentUser } from "@/auth/current-user";
 import { Plus } from "lucide-react";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
+import { AlertSubscription } from "../AlertSubscription/AlertSubscription";
+import { toast } from "sonner";
 
 export default async function AppPage() {
-  const user = await requireCurrentUser();
+  const user = await currentUser();
 
   if (!user) {
     redirect("/login");
@@ -36,8 +36,10 @@ export default async function AppPage() {
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <div className={style.main}>
+        {/* <AlertSubscription /> */}
+
         {projects.length === 0 ? (
           <div className={style.container__empty}>
             <p className={style.empty}>Aucun projet pour le moment.</p>
@@ -70,7 +72,13 @@ export default async function AppPage() {
                       <DropdownMenuLabel>Settings</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <DeleteProject projectId={project.id} />
+                        <Link
+                          className="w-full h-full"
+                          href={`/app/projects/${project.slug}/edit`}
+                        >
+                          Modifier
+                        </Link>
+                        {/* <DeleteProject projectId={project.id} /> */}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
