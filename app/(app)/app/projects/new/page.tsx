@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Header from "../../Header/Header";
+import HeaderConception from "../../HeaderConception/HeaderConception";
 import { ProjectForm } from "../[slug]/edit/ProjectForm";
 import style from "./page.module.scss";
 
@@ -24,7 +25,7 @@ export default async function AppPage() {
 
   return (
     <>
-      <Header user={user} />
+      <HeaderConception user={user} />
       <div className={style.main}>
         <ProjectForm />
         <img className={style.points__bg} src="/image/points-bg.svg" alt="" />

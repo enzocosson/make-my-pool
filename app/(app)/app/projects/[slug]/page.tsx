@@ -1,12 +1,12 @@
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable @next/next/no-img-element */
-import { PrismaClient } from "@prisma/client";
 import style from "./page.module.scss";
-import Header from "../../Header/Header";
-
 import { currentUser } from "@/auth/current-user";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import HeaderConception from "../../HeaderConception/HeaderConception";
+import Footer from "../../Footer/Footer";
+import { CanvasComponent } from "@/components/CanvasConception/CanvasConception";
 
 export default async function AppPage() {
   const user = await currentUser();
@@ -23,8 +23,10 @@ export default async function AppPage() {
 
   return (
     <>
-      <Header user={user} />
+      <HeaderConception user={user} />
       <div className={style.main}>
+        <Footer />
+        <CanvasComponent />
         <img className={style.points__bg} src="/image/points-bg.svg" alt="" />
       </div>
     </>

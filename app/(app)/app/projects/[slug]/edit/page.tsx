@@ -7,6 +7,7 @@ import { prisma } from "@/lib/prisma";
 import { PageParams } from "@/types/next";
 import { notFound } from "next/navigation";
 import { redirect } from "next/navigation";
+import HeaderConception from "../../../HeaderConception/HeaderConception";
 
 export default async function AppPage(
   props: PageParams<{
@@ -34,15 +35,13 @@ export default async function AppPage(
     redirect("/app/projects");
   }
 
-  // console.log(allProject);
-
   if (!project) {
     notFound();
   }
 
   return (
     <>
-      <Header user={user} />
+      <HeaderConception user={user} />
       <div className={style.main}>
         <ProjectForm defaultValues={project} projectId={project.id} />
 

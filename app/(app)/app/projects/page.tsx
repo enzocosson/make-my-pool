@@ -20,6 +20,7 @@ import { Plus } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { AlertSubscription } from "../AlertSubscription/AlertSubscription";
 import { toast } from "sonner";
+import Footer from "../Footer/Footer";
 
 export default async function AppPage() {
   const user = await currentUser();
@@ -39,7 +40,7 @@ export default async function AppPage() {
       <Header user={user} />
       <div className={style.main}>
         {/* <AlertSubscription /> */}
-
+        <Footer />
         {projects.length === 0 ? (
           <div className={style.container__empty}>
             <p className={style.empty}>Aucun projet pour le moment.</p>

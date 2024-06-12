@@ -1,0 +1,22 @@
+.main {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 9999999999999;
+
+  a {
+    color: var(--white);
+    font-size: 0.8rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+}
