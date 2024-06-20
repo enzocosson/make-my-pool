@@ -200,7 +200,7 @@ export const CanvasComponent = () => {
 
       <Canvas className={styles.canvas}>
         <ambientLight intensity={0.7} />
-        <pointLight position={[-2, 1, 1]} />
+        <pointLight position={[-2, 5, 1]} intensity={1} />
         <OrbitControls
           enablePan={false}
           enableZoom={false}

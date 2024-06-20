@@ -42,6 +42,7 @@
     "@react-three/drei": "^9.106.0",
     "@react-three/fiber": "^8.16.8",
     "@t3-oss/env-nextjs": "^0.10.1",
+    "@types/three": "^0.165.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
@@ -66,6 +67,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.165.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
